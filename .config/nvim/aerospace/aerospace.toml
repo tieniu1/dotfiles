@@ -1,0 +1,234 @@
+# 将此配置文件复制到 ~/.aerospace.toml
+# 之后,你可以编辑 ~/.aerospace.toml 来自定义配置
+
+# 当焦点显示器改变时鼠标跟随焦点
+# 如果你不喜欢这个行为,可以从配置中删除它
+# 参见 https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
+# 参见 https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# 默认值(如果你省略此键): on-focused-monitor-changed = []
+# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
+
+# 你可以用它来添加在 macOS 用户会话登录后运行的命令
+# 'start-at-login' 需要设置为 'true' 才能使 'after-login-command' 生效
+# 可用命令: https://nikitabobko.github.io/AeroSpace/commands
+after-login-command = []
+
+# 你可以用它来添加在 AeroSpace 启动后运行的命令
+# 'after-startup-command' 在 'after-login-command' 之后运行
+# 可用命令: https://nikitabobko.github.io/AeroSpace/commands
+after-startup-command = []
+
+# 在登录时启动 AeroSpace
+start-at-login = false
+
+# 标准化设置。参见: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#layouts
+# 'accordion-padding' 指定手风琴布局的内边距大小
+# 你可以设置为 0 来禁用内边距功能
+accordion-padding = 0
+
+# 设置默认布局为手风琴布局
+# 可选值: tiles|accordion
+default-root-container-layout = 'accordion'
+
+# 设置默认方向为垂直方向
+# 可选值: horizontal|vertical|auto
+# 'auto' 表示: 宽屏显示器(宽度大于高度)使用水平方向
+#             竖屏显示器(高度大于宽度)使用垂直方向
+default-root-container-orientation = 'vertical'
+
+
+# 你可以通过切换此标志来有效地关闭 macOS 的"隐藏应用程序"(cmd-h)功能
+# 如果你不使用这个 macOS 功能,但是不小心按到了 cmd-h 或 cmd-alt-h 键,这很有用
+# 另见: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
+automatically-unhide-macos-hidden-apps = false
+
+# 可选值: (qwerty|dvorak)
+# 参见 https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+[key-mapping]
+preset = 'qwerty'
+
+# 窗口之间(inner-*)和显示器边缘(outer-*)之间的间隙
+# 可选值:
+# - 固定值:     gaps.outer.top = 8
+# - 按显示器:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
+#              在这个例子中,24 是没有匹配时的默认值
+#              显示器模式与 'workspace-to-monitor-force-assignment' 相同
+#              参见: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+[gaps]
+inner.horizontal = 0
+inner.vertical =   0
+outer.left =       0
+outer.bottom =     0
+outer.top =        0
+outer.right =      0
+
+# 'main' 绑定模式声明
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' 绑定模式必须始终存在
+# 默认值(如果你省略此键): mode.main.binding = {}
+
+
+[workspace-to-monitor-force-assignment]
+# 1 = 'main'       # 工作区 1 固定在主显示器
+7 = 'secondary'  # 工作区 2 固定在副显示器（非主显示器）
+8 = 'secondary'  # 工作区 2 固定在副显示器（非主显示器）
+9 = 'secondary'  # 工作区 2 固定在副显示器（非主显示器）
+
+
+[mode.main.binding]        # 声明'main'绑定模式
+
+# 所有可用按键:
+# - 字母键.        a, b, c, ..., z
+# - 数字键.        0, 1, 2, ..., 9
+# - 小键盘数字.    keypad0, keypad1, keypad2, ..., keypad9
+# - 功能键.        f1, f2, ..., f20
+# - 特殊键.        minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
+#                  leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
+# - 小键盘特殊键.  keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                  keypadMinus, keypadMultiply, keypadPlus
+# - 方向键.        left, down, up, right
+
+# 所有可用修饰键: cmd, alt, ctrl, shift
+
+# 所有可用命令: https://nikitabobko.github.io/AeroSpace/commands
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+# 你可以取消注释以下行来使用 alt + enter 快捷键打开终端(类似 i3)
+# alt-enter = '''exec-and-forget osascript -e '
+# tell application "Terminal"
+#     do script
+#     activate
+# end tell'
+# '''
+
+# 禁用cmd-h 或 cmd-alt-h 快捷键, 可以避免误触导致应用被隐藏
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#layout
+alt-slash = 'layout tiles horizontal vertical'    # Alt + / 切换到平铺布局
+alt-comma = 'layout accordion horizontal vertical'  # Alt + , 切换到手风琴布局
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#focus
+# alt-h = 'focus left'    # Alt + h 焦点移到左边窗口
+# alt-j = 'focus down'    # Alt + j 焦点移到下面窗口
+# alt-k = 'focus up'      # Alt + k 焦点移到上面窗口
+# alt-l = 'focus right'   # Alt + l 焦点移到右边窗口
+# 添加循环切换参数
+alt-h = 'focus --boundaries-action wrap-around-the-workspace left'    # Alt + h 焦点移到左边窗口
+alt-j = 'focus --boundaries-action wrap-around-the-workspace down'    # Alt + j 焦点移到下面窗口
+alt-k = 'focus --boundaries-action wrap-around-the-workspace up'      # Alt + k 焦点移到上面窗口
+alt-l = 'focus --boundaries-action wrap-around-the-workspace right'   # Alt + l 焦点移到右边窗口
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#move
+alt-shift-h = 'move left'    # Alt + Shift + h 将窗口移到左边
+alt-shift-j = 'move down'    # Alt + Shift + j 将窗口移到下面
+alt-shift-k = 'move up'      # Alt + Shift + k 将窗口移到上面
+alt-shift-l = 'move right'   # Alt + Shift + l 将窗口移到右边
+
+# 显示器聚焦快捷键
+alt-ctrl-h = 'focus-monitor left'   # 聚焦左边的显示器
+alt-ctrl-l = 'focus-monitor right'  # 聚焦右边的显示器
+alt-ctrl-j = 'focus-monitor down'   # 聚焦下面的显示器
+alt-ctrl-k = 'focus-monitor up'     # 聚焦上面的显示器
+alt-ctrl-n = 'focus-monitor --wrap-around next'  # 循环切换显示器
+
+# # 移动窗口到其他显示器
+# alt-shift-ctrl-h = 'move-node-to-monitor left'   # 移动窗口到左边显示器
+# alt-shift-ctrl-l = 'move-node-to-monitor right'  # 移动窗口到右边显示器
+# alt-shift-ctrl-j = 'move-node-to-monitor down'   # 移动窗口到下面显示器
+# alt-shift-ctrl-k = 'move-node-to-monitor up'     # 移动窗口到上面显示器
+
+# 移动窗口到其他显示器时自动切换焦点
+alt-shift-ctrl-h = ['move-node-to-monitor left', 'focus-monitor left']
+alt-shift-ctrl-l = ['move-node-to-monitor right', 'focus-monitor right']
+alt-shift-ctrl-j = ['move-node-to-monitor down', 'focus-monitor down']
+alt-shift-ctrl-k = ['move-node-to-monitor up', 'focus-monitor up']
+
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#resize
+alt-shift-minus = 'resize smart -50'  # Alt + Shift + - 缩小窗口
+alt-shift-equal = 'resize smart +50'  # Alt + Shift + = 放大窗口
+alt-f = 'fullscreen'  # Alt + f 全屏
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = 'workspace 1'  # Alt + 1 切换到工作区 1
+alt-2 = 'workspace 2'  # Alt + 2 切换到工作区 2
+alt-3 = 'workspace 3'  # Alt + 3 切换到工作区 3
+alt-4 = 'workspace 4'  # Alt + 4 切换到工作区 4
+alt-5 = 'workspace 5'  # Alt + 5 切换到工作区 5
+alt-6 = 'workspace 6'  # Alt + 6 切换到工作区 6
+alt-7 = 'workspace 7'  # Alt + 7 切换到工作区 7
+alt-8 = 'workspace 8'  # Alt + 8 切换到工作区 8
+alt-9 = 'workspace 9'  # Alt + 9 切换到工作区 9
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+alt-shift-1 = 'move-node-to-workspace 1'  # Alt + Shift + 1 将窗口移动到工作区 1
+alt-shift-2 = 'move-node-to-workspace 2'  # Alt + Shift + 2 将窗口移动到工作区 2
+alt-shift-3 = 'move-node-to-workspace 3'  # Alt + Shift + 3 将窗口移动到工作区 3
+alt-shift-4 = 'move-node-to-workspace 4'  # Alt + Shift + 4 将窗口移动到工作区 4
+alt-shift-5 = 'move-node-to-workspace 5'  # Alt + Shift + 5 将窗口移动到工作区 5
+alt-shift-6 = 'move-node-to-workspace 6'  # Alt + Shift + 6 将窗口移动到工作区 6
+alt-shift-7 = 'move-node-to-workspace 7'  # Alt + Shift + 7 将窗口移动到工作区 7
+alt-shift-8 = 'move-node-to-workspace 8'  # Alt + Shift + 8 将窗口移动到工作区 8
+alt-shift-9 = 'move-node-to-workspace 9'  # Alt + Shift + 9 将窗口移动到工作区 9
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+alt-tab = 'workspace-back-and-forth'  # Alt + Tab 在最近使用的两个工作区之间切换
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'  # Alt + Shift + Tab 将工作区移动到下一个显示器
+
+
+# 参见: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-shift-semicolon = 'mode service'  # Alt + Shift + ; 进入服务模式
+
+
+# 'service' 绑定模式声明
+# 参见: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+esc = ['reload-config', 'mode main']  # Esc 重新加载配置并返回���式
+r = ['flatten-workspace-tree', 'mode main'] # 重置布局
+f = ['layout floating tiling', 'mode main'] # 在浮动和平铺布局之间切换
+backspace = ['close-all-windows-but-current', 'mode main']  # Backspace 关闭当前窗口外的所有窗口
+
+# sticky 功能尚未支持 https://github.com/nikitabobko/AeroSpace/issues/2
+#s = ['layout sticky tiling', 'mode main']
+
+alt-shift-h = ['join-with left', 'mode main']   # Alt + Shift + h 与左边窗口合并
+alt-shift-j = ['join-with down', 'mode main']   # Alt + Shift + j 与下面窗口合并
+alt-shift-k = ['join-with up', 'mode main']     # Alt + Shift + k 与上面窗口合并
+alt-shift-l = ['join-with right', 'mode main']  # Alt + Shift + l 与右边窗口合并
+
+# 窗口检测回调
+[[on-window-detected]]
+if.app-name-regex-substring = 'Google Chrome'
+run = ['move-node-to-workspace 1']
+[[on-window-detected]]
+if.app-name-regex-substring = 'Cursor'
+run = ['move-node-to-workspace 2']
+[[on-window-detected]]
+if.app-name-regex-substring = 'Windsurf'
+run = ['move-node-to-workspace 2']
+[[on-window-detected]]
+if.app-name-regex-substring = 'vscode'
+run = ['move-node-to-workspace 2']
+[[on-window-detected]]
+if.app-name-regex-substring = '企业微信'
+run = ['move-node-to-workspace 3']
+[[on-window-detected]]
+if.app-name-regex-substring = 'iTerm2'
+run = ['move-node-to-workspace 4']
+[[on-window-detected]]
+if.app-name-regex-substring = 'CleanMyMac X'
+run = ['layout floating']
+[[on-window-detected]]
+if.app-name-regex-substring = 'PixPin'
+run = ['layout floating']
+
+

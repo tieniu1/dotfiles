@@ -1,0 +1,1 @@
+{"title":"Caps Lock  (Caps Lock if alone)","rules":[{"description":"Caps Lock(Caps Lock if alone)","manipulators":[{"from":{"key_code":"caps_lock"},"to":[{"key_code":"left_shift","modifiers":["left_control"]}],"to_if_alone":[{"key_code":"caps_lock"}],"type":"basic"}]}]}

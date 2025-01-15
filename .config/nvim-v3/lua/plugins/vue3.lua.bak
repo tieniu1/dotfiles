@@ -1,0 +1,86 @@
+if true then
+  return {}
+end
+
+return {
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        filtered_items = {
+          visible = true, -- 这将显示所有隐藏文件
+          hide_dotfiles = false, -- 这将显示以点开头的文件
+          hide_gitignored = false, -- 如果您也想显示 .gitignore 中的文件
+        },
+      },
+    },
+  },
+  {
+    "xna00/unocss-language-server",
+    dependencies = {
+      "mrshmllow/document-color.nvim",
+    },
+    config = function()
+      require("document-color").setup({
+        mode = "background", -- 或 "foreground"
+      })
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "vue", "javascript", "css", "scss" })
+      end
+      return opts
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        volar = {
+          filetypes = { "javascript", "javascriptreact", "vue", "json" },
+          settings = {
+            volar = {
+              completion = {
+                autoImport = true,
+                useScaffoldSnippets = true,
+              },
+              codeLens = {
+                references = true,
+                pugTools = true,
+                scriptSetupTools = true,
+              },
+            },
+          },
+          root_dir = require("lspconfig.util").root_pattern("package.json", "vue.config.js", ".git", "jsconfig.json"),
+        },
+        -- 禁用vue2 lsp
+        vuels = false,
+        -- 禁用ts lsp
+        ts_ls = {
+          autostart = false,
+          enable = false,
+        },
+        -- 禁用ts lsp
+        vtsls = {
+          autostart = false,
+          enable = false,
+        },
+        unocss = {
+          filetypes = { "html", "javascriptreact", "typescriptreact", "vue", "svelte" },
+          root_dir = require("lspconfig.util").root_pattern(
+            "unocss.config.js",
+            "unocss.config.ts",
+            "uno.config.js",
+            "uno.config.ts"
+          ),
+          -- 启用详细日志
+          logLevel = "verbose",
+        },
+      },
+    },
+  },
+}

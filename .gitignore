@@ -1,0 +1,4 @@
+.history
+.zshrc.local
+.env
+*.local
