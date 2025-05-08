@@ -1,102 +1,124 @@
-# 如果你从 bash 切换过来，可能需要更改你的 $PATH
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Oh My Zsh 安装路径
+# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# 设置要加载的主题名称 --- 如果设置为 "random"，每次加载 Oh My Zsh 时会随机选择一个主题
-# 要查看具体加载了哪个主题，可以运行: echo $RANDOM_THEME
-# 参见 https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# 取消注释以下行以启用区分大小写的补全
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# 取消注释以下行以启用不区分连字符的补全
-# 区分大小写的补全必须关闭。_ 和 - 将可以互换
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# 取消注释以下行之一以更改自动更新行为
-# zstyle ':omz:update' mode disabled  # 禁用自动更新
-# zstyle ':omz:update' mode auto      # 自动更新而不询问
-# zstyle ':omz:update' mode reminder  # 仅在需要更新时提醒
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-# 取消注释以下行，如果粘贴 URL 和其他文本时出现问题
+# Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 
-# 取消注释以下行以禁用 ls 命令的颜色显示
+# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-# 取消注释以下行以禁用自动设置终端标题
+# Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# 取消注释以下行以启用命令自动纠正
+# Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# 取消注释以下行以在等待补全时显示红点
-# 你也可以将其设置为其他字符串以显示自定义提示
-# 例如 COMPLETION_WAITING_DOTS="%F{yellow}等待中...%f"
-# 注意：此设置在 zsh < 5.7.1 中可能会导致多行提示符问题（参见 #5765）
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
-# 取消注释以下行，如果你想禁用将未跟踪的文件标记为脏
-# 这会使大型仓库的状态检查更快
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# 取消注释以下行，如果你想更改历史命令输出中显示的时间戳格式
-# 你可以选择以下三种格式之一：
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# 或者使用 strftime 函数格式规范设置自定义格式
-# 详情参见 'man strftime'
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# 你想使用 $ZSH/custom 以外的自定义文件夹吗？
+# Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# 你想加载哪些插件？
-# 标准插件可以在 $ZSH/plugins/ 中找到
-# 自定义插件可以添加到 $ZSH_CUSTOM/plugins/
-# 示例格式: plugins=(rails git textmate ruby lighthouse)
-# 请谨慎添加，因为过多的插件会减慢 shell 启动速度
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    colorize
-    autojump
-)
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  colorize
+  autojump
+  )
 
 source $ZSH/oh-my-zsh.sh
 
-# 用户配置
+# User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# 你可能需要手动设置语言环境
+# You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# 本地和远程会话的首选编辑器
+# Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
 #   export EDITOR='nvim'
 # fi
 
-# 编译标志
+# Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-# 设置个人别名，覆盖 Oh My Zsh 库、插件和主题提供的别名
-# 别名可以放在这里，但建议 Oh My Zsh 用户在 $ZSH_CUSTOM 文件夹中创建一个顶级文件来定义别名
-# 文件扩展名为 .zsh。例如：
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
 # - $ZSH_CUSTOM/aliases.zsh
 # - $ZSH_CUSTOM/macos.zsh
-# 要查看所有活动别名，请运行 `alias`。
+# For a full list of active aliases, run `alias`.
 #
-# 示例别名
+# Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # TODO 从.zshrc.localf加载隐私数据
 if [ -f "$HOME/.zshrc.local" ]; then
@@ -104,12 +126,13 @@ if [ -f "$HOME/.zshrc.local" ]; then
 fi
 
 
+
 # 设置代理
 proxy() {
 
     # 代理设置
     export PROXY_HOST=127.0.0.1
-    export PROXY_PORT=7890  # 根据您的代理端口修改
+    export PROXY_PORT=7897   # 根据您的代理端口修改
 
     export http_proxy="http://$PROXY_HOST:$PROXY_PORT"
     export https_proxy="http://$PROXY_HOST:$PROXY_PORT"
@@ -160,3 +183,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
+
+# Added by Windsurf
+export PATH="/Users/haland/.codeium/windsurf/bin:$PATH"
+
+export PATH="/opt/homebrew/bin:$PATH"

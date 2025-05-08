@@ -188,14 +188,16 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'  # Alt + Shift + 
 # 参见: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-shift-semicolon = 'mode service'  # Alt + Shift + ; 进入服务模式
 
+alt-d = 'exec-and-forget aerospace debug'
 
 # 'service' 绑定模式声明
 # 参见: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = ['reload-config', 'mode main']  # Esc 重新加载配置并返回���式
+esc = ['reload-config', 'mode main']  # Esc 重新加载配置并返回模式
 r = ['flatten-workspace-tree', 'mode main'] # 重置布局
 f = ['layout floating tiling', 'mode main'] # 在浮动和平铺布局之间切换
 backspace = ['close-all-windows-but-current', 'mode main']  # Backspace 关闭当前窗口外的所有窗口
+d = ['exec-and-forget aerospace debug', 'mode main']  # 运行调试命令并返回主模式
 
 # sticky 功能尚未支持 https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
@@ -207,28 +209,39 @@ alt-shift-l = ['join-with right', 'mode main']  # Alt + Shift + l 与右边窗�
 
 # 窗口检测回调
 [[on-window-detected]]
-if.app-name-regex-substring = 'Google Chrome'
-run = ['move-node-to-workspace 1']
+    if.app-id = 'com.google.Chrome'
+    run = ['move-node-to-workspace 1']
 [[on-window-detected]]
-if.app-name-regex-substring = 'Cursor'
-run = ['move-node-to-workspace 2']
+    if.app-name-regex-substring = 'Cursor'
+    run = ['move-node-to-workspace 2']
 [[on-window-detected]]
-if.app-name-regex-substring = 'Windsurf'
-run = ['move-node-to-workspace 2']
+    if.app-name-regex-substring = 'Windsurf'
+    run = ['move-node-to-workspace 2']
 [[on-window-detected]]
-if.app-name-regex-substring = 'vscode'
-run = ['move-node-to-workspace 2']
+    if.app-name-regex-substring = 'vscode'
+    run = ['move-node-to-workspace 2']
 [[on-window-detected]]
-if.app-name-regex-substring = '企业微信'
-run = ['move-node-to-workspace 3']
+    if.app-name-regex-substring = '企业微信'
+    run = ['move-node-to-workspace 3']
 [[on-window-detected]]
-if.app-name-regex-substring = 'iTerm2'
-run = ['move-node-to-workspace 4']
+    if.app-id = 'com.tencent.xinWeChat'
+    check-further-callbacks = true
+    run = ['layout floating','move-node-to-workspace 4']
 [[on-window-detected]]
-if.app-name-regex-substring = 'CleanMyMac X'
-run = ['layout floating']
+    if.app-name-regex-substring = 'CleanMyMac X'
+    run = ['layout floating']
 [[on-window-detected]]
-if.app-name-regex-substring = 'PixPin'
-run = ['layout floating']
-
-
+    if.app-name-regex-substring = 'PixPin'
+    run = ['layout floating']
+#使各类「设置」界面自动悬浮：
+[[on-window-detected]]
+    if.window-title-regex-substring = '(setting|设置)'
+    run = ['layout floating']
+#使 Chrome 和 Firefox 等浏览器的画中画窗口自动悬浮：
+[[on-window-detected]]
+    if.window-title-regex-substring = '(Picture-in-Picture|画中画)'
+    run = ['layout floating']
+# # 使Finder所有窗口设为自动悬浮：
+# [[on-window-detected]]
+#     if.app-id = 'com.apple.finder'
+#     run = ['layout floating']
