@@ -24,10 +24,5 @@ map("n", "<leader>yf", "V$%y")
 -- html标签跳转到开始标签的结束>
 map({ "n", "v" }, "<leader>tl", "^%")
 
--- J向下移动5行
-map({ "n", "v" }, "J", "5j")
--- K向上移动5行
-map({ "n", "v" }, "K", "5k")
-
 -- leader + v 把光标下单词替换为最近一次复制内容
 map("n", "<leader>vp", ':normal viw"+p<CR>')

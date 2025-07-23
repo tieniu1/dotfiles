@@ -107,8 +107,11 @@ outer.right =      0
 # '''
 
 # 禁用cmd-h 或 cmd-alt-h 快捷键, 可以避免误触导致应用被隐藏
-cmd-h = [] # Disable "hide application"
-cmd-alt-h = [] # Disable "hide others"
+# cmd-h = [] # Disable "hide application"
+# cmd-alt-h = [] # Disable "hide others"
+
+# 新增关闭当前窗口快捷键 (Alt + q)
+alt-q = "close"  # 关闭当前聚焦窗口
 
 # 参见: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'    # Alt + / 切换到平铺布局
@@ -232,6 +235,12 @@ alt-shift-l = ['join-with right', 'mode main']  # Alt + Shift + l 与右边窗�
     run = ['layout floating']
 [[on-window-detected]]
     if.app-name-regex-substring = 'PixPin'
+    run = ['layout floating']
+[[on-window-detected]]
+    if.app-id = 'io.kuaicheng.ktjk'
+    run = ['layout floating']
+[[on-window-detected]]
+    if.app-name-regex-substring = '十六番'
     run = ['layout floating']
 #使各类「设置」界面自动悬浮：
 [[on-window-detected]]

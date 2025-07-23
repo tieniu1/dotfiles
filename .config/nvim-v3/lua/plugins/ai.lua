@@ -2,72 +2,53 @@ return {
   --#AI插件支持
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    version = false, -- 如果你想要始终获取最新的更改，请设置这个
-    opts = {
-      provider = "openai",
-      openai = {
-        -- linux.do 的配置
-        -- endpoint = "https://api.oaipro.com/v1",
-        -- model = "claude-3-5-sonnet-20241022",
-
-        -- deepseek
-        -- endpoint = "https://api.deepseek.com/v1",
-        -- model = "deepseek-chat",
-        -- model = "deepseek-coder",
-
-        -- 百炼
-        endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        model = "qwen2.5-coder-32b-instruct",
-        --
-        -- 硅基流动
-        -- endpoint = "https://api.siliconflow.cn/v1/",
-        -- model = "Qwen/QwQ-32B",
-        -- model = "Qwen/Qwen2.5-Coder-32B-Instruct",
-
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 4096,
-      },
-      -- 在这里添加任何选项
-    },
-    -- 如果你想从源代码构建，使用 `make BUILD_FROM_SOURCE=true`
+    lazy = false, -- 保持启动时加载，以便 :Avante 命令始终可用
     build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- Windows系统使用这个
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      --- 以下依赖是可选的
-      "hrsh7th/nvim-cmp", -- 用于avante命令和提及的自动补全
-      "nvim-tree/nvim-web-devicons", -- 或使用 echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- 当 providers='copilot' 时需要
+      "hrsh7th/nvim-cmp",
+      "nvim-tree/nvim-web-devicons",
+      "zbirenbaum/copilot.lua",
       {
-        -- 支持图片粘贴
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
         opts = {
-          -- 推荐设置
           default = {
             embed_image_as_base64 = false,
             prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- Windows用户必需
+            drag_and_drop = { insert_mode = true },
             use_absolute_path = true,
           },
         },
       },
-      -- {
-      --   -- 如果你设置了lazy=true，确保正确设置这个
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- },
+    },
+    opts = {
+      -- 1. 设置默认提供商
+      provider = "openai", -- 你之前设置的 provider = "openai" 移到这里并改名
+
+      -- 2. 在 providers 表中配置你的服务
+      providers = {
+        -- 我们将你所有的配置都放在 openai 这个键下
+        openai = {
+          -- avante 会去读取 `OPENAI_API_KEY`
+          endpoint = "https://dashscope.aliyuncs.com/compatible-mode/v1",
+
+          model = "qwen2.5-coder-32b-instruct",
+
+          -- 其他参数也一并移入
+          request_options = {
+            timeout = 30000, -- Timeout in milliseconds
+            temperature = 0,
+            max_tokens = 4096,
+          },
+        },
+      },
+      -- 其他 avante 的全局设置可以放在这里，比如 UI
+      ui = {
+        border = "rounded",
+      },
     },
   },
   {

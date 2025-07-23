@@ -194,11 +194,11 @@
                     "simple_modifications": [
                         {
                             "from": { "pointing_button": "button4" },
-                            "to": [{ "mouse_key": { "horizontal_wheel": 64 } }]
+                            "to": [{ "key_code": "left_arrow" }]
                         },
                         {
                             "from": { "pointing_button": "button5" },
-                            "to": [{ "mouse_key": { "horizontal_wheel": -64 } }]
+                            "to": [{ "key_code": "right_arrow" }]
                         }
                     ]
                 }
