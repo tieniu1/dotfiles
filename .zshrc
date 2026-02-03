@@ -175,6 +175,7 @@ testproxy() {
 # 
 alias nvim-lazy='NVIM_APPNAME=nvim-lazyvim nvim'
 alias nvim-v3='NVIM_APPNAME=nvim-v3 nvim'
+alias nvim-react='NVIM_APPNAME=nvim-react nvim'
 
 
 
@@ -226,3 +227,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# Added by Antigravity
+export PATH="/Users/haland/.antigravity/antigravity/bin:$PATH"

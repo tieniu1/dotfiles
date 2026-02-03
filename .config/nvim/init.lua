@@ -48,10 +48,10 @@ local function map(mode, lhs, rhs, opts)
   if opts then options = vim.tbl_extend("force", options, opts) end
   vim.keymap.set(mode, lhs, rhs, options)
 end
--- J向下移动5行
-map({"n","v"}, "J", "5j")
--- K向上移动5行
-map({"n","v"}, "K", "5k")
+-- -- J向下移动5行
+-- map({"n","v"}, "J", "5j")
+-- -- K向上移动5行
+-- map({"n","v"}, "K", "5k")
 -- 重新配置y，将复制内容写入系统剪切板 
 map({"n","v"}, "y", '"+y')
 
@@ -115,6 +115,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "转到右窗口", remap = true })
 -- 分割屏幕
 map("n", "<leader>|", "<C-W>v")
 map("n", "<leader>-", "<C-W>s")
+
 -- --------------配置窗口 结束------------------
 
 -- 文本被"yank"后，高亮显示被复制的文本，持续时间为100毫秒
@@ -267,7 +268,7 @@ end
     -- 查看: 关闭其他组中的编辑器
     vscodeMap("n", "<leader>bO", "workbench.action.closeEditorsInOtherGroups")
 
-    -- 查看: 关闭编辑器
+    -- 查看: 关闭编辑器 Ctrl+w c
     vscodeMap("n", "<leader>bd", "workbench.action.closeActiveEditor")
 
     -- 查看: 关闭编辑器组  
@@ -281,11 +282,25 @@ end
     vscodeMap("n", "]b", "workbench.action.nextEditorInGroup")
     vscodeMap("n", "<s-l>", "workbench.action.nextEditorInGroup")
 
-    -- 水平分屏
-    -- vscodeMap("n", "<leader>ws", "workbench.action.splitEditorRight")
-    -- 垂直分屏
-    -- vscodeMap("n", "<leader>wv", "workbench.action.duplicateActiveEditorGroupDown")
+    -- 
+    -- 水平分屏 Ctrl + w s
+    vscodeMap("n", "<leader>ws", "workbench.action.splitEditorRight")
+    -- 垂直分屏 Ctrl + w v
+    vscodeMap("n", "<leader>wv", "workbench.action.duplicateActiveEditorGroupDown")
+    -- 强制重绘屏幕（避免与窗口切换键冲突）
+    map("n", "<leader>r", "<Cmd>redraw!<CR>", { desc = "强制重绘屏幕" })
     --
+    --
+    --  窗口使用neovim-vscode提供的 快捷键,和默认保持一致.
+    -- ▪	Ctrl + w h：移动到左边的窗口。 	
+    -- ▪	Ctrl + w l：移动到右边的窗口。 	
+    -- ▪	Ctrl + w k：移动到上方的窗口。 	
+    -- ▪	Ctrl + w j：移动到下方的窗口。
+    -- ▪	Ctrl + w w：在所有窗口之间循环切换。
+    --
+    --
+    --
+    -- 
     -- -- 查看: 聚焦到左侧编辑器组 
     -- vscodeMap("n", "<leader>wh", "workbench.action.focusLeftGroup")
     --

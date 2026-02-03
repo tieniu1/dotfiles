@@ -1,0 +1,86 @@
+-- TypeScript 增强配置（LazyVim extras 已提供基础支持）
+return {
+  -- 更好的 TypeScript 错误显示
+  {
+    "dmmulroy/ts-error-translator.nvim",
+    config = function()
+      require("ts-error-translator").setup()
+    end,
+  },
+
+  -- TypeScript 文档生成
+  {
+    "kkoomen/vim-doge",
+    build = ":call doge#install()",
+    config = function()
+      vim.g.doge_doc_standard_typescript = "jsdoc"
+      vim.g.doge_typescript_settings = {
+        destructuring_props = 1,
+        omit_redundant_param_types = 1,
+      }
+    end,
+  },
+
+  -- 导入成本显示（为 TypeScript/JavaScript 优化）
+  {
+    "barrett-ruth/import-cost.nvim",
+    build = "sh install.sh npm",
+    config = function()
+      require("import-cost").setup({
+        filetypes = {
+          "javascript",
+          "javascriptreact", 
+          "typescript",
+          "typescriptreact",
+        },
+      })
+    end,
+  },
+
+  -- TypeScript 特定的文本对象
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["ap"] = "@parameter.outer",
+              ["ip"] = "@parameter.inner",
+            },
+          },
+          move = {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = {
+              ["]f"] = "@function.outer",
+              ["]c"] = "@class.outer",
+              ["]p"] = "@parameter.inner",
+            },
+            goto_next_end = {
+              ["]F"] = "@function.outer",
+              ["]C"] = "@class.outer",
+              ["]P"] = "@parameter.inner",
+            },
+            goto_previous_start = {
+              ["[f"] = "@function.outer",
+              ["[c"] = "@class.outer",
+              ["[p"] = "@parameter.inner",
+            },
+            goto_previous_end = {
+              ["[F"] = "@function.outer",
+              ["[C"] = "@class.outer",
+              ["[P"] = "@parameter.inner",
+            },
+          },
+        },
+      })
+    end,
+  },
+}

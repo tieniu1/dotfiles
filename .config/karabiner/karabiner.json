@@ -4,6 +4,46 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "available_since": "12.3.0",
+                        "description": "Change button3 + mouse motion to scroll wheel (rev 1)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "pointing_button": "button3"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "enable_mouse_motion_to_scroll",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_after_key_up": [
+                                    {
+                                        "set_variable": {
+                                            "name": "enable_mouse_motion_to_scroll",
+                                            "value": 0
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "enable_mouse_motion_to_scroll",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "modifiers": { "optional": ["any"] } },
+                                "type": "mouse_motion_to_scroll"
+                            }
+                        ]
+                    },
+                    {
                         "description": "SpaceFN: Space enables SpaceFN mode (see: https://geekhack.org/index.php?topic=51069.0)",
                         "manipulators": [
                             {
@@ -157,15 +197,6 @@
             "devices": [
                 {
                     "identifiers": {
-                        "is_pointing_device": true,
-                        "product_id": 50495,
-                        "vendor_id": 1133
-                    },
-                    "ignore": false,
-                    "mouse_flip_vertical_wheel": true
-                },
-                {
-                    "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": true,
                         "product_id": 58566,
@@ -176,31 +207,59 @@
                         {
                             "from": { "key_code": "escape" },
                             "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        },
-                        {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "right_option" }]
                         }
                     ]
                 },
                 {
                     "identifiers": {
-                        "is_pointing_device": true,
-                        "product_id": 24819,
-                        "vendor_id": 6127
+                        "is_keyboard": true,
+                        "product_id": 12313,
+                        "vendor_id": 1203
                     },
-                    "ignore": false,
-                    "mouse_flip_vertical_wheel": true,
                     "simple_modifications": [
                         {
-                            "from": { "pointing_button": "button4" },
-                            "to": [{ "mouse_key": { "horizontal_wheel": 64 } }]
+                            "from": { "key_code": "keypad_9" },
+                            "to": [{ "key_code": "left_option" }]
                         },
                         {
-                            "from": { "pointing_button": "button5" },
-                            "to": [{ "mouse_key": { "horizontal_wheel": -64 } }]
+                            "from": { "key_code": "left_option" },
+                            "to": [{ "key_code": "left_command" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_consumer": true,
+                        "product_id": 12313,
+                        "vendor_id": 1203
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 9,
+                        "vendor_id": 1739
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 50495,
+                        "vendor_id": 1133
+                    },
+                    "mouse_flip_vertical_wheel": true,
+                    "pointing_motion_wheels_multiplier": 0.5,
+                    "pointing_motion_xy_multiplier": 0.5
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 50495,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true
                 }
             ],
             "name": "Default profile",

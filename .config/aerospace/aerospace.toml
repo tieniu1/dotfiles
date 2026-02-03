@@ -6,8 +6,9 @@
 # 参见 https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # 参见 https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # 默认值(如果你省略此键): on-focused-monitor-changed = []
-# on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = ['move-mouse window-lazy-center']
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+# 这行配置会导致iStat Menus 中出现新窗口时，鼠标自动移动到新窗口中间，体验非常差。
+# on-focus-changed = ['move-mouse window-lazy-center']
 
 # 你可以用它来添加在 macOS 用户会话登录后运行的命令
 # 'start-at-login' 需要设置为 'true' 才能使 'after-login-command' 生效
@@ -241,6 +242,10 @@ alt-shift-l = ['join-with right', 'mode main']  # Alt + Shift + l 与右边窗�
     run = ['layout floating']
 [[on-window-detected]]
     if.app-name-regex-substring = '十六番'
+    run = ['layout floating']
+# IINA 视频播放器设置为浮动窗口
+[[on-window-detected]]
+    if.app-id = 'com.colliderli.iina'
     run = ['layout floating']
 #使各类「设置」界面自动悬浮：
 [[on-window-detected]]

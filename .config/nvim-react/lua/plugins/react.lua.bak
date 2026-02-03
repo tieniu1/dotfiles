@@ -1,0 +1,138 @@
+return {
+  -- TypeScript/JavaScript support
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {
+      settings = {
+        tsx_close_tag = {
+          enable = true,
+          filetypes = { "typescriptreact", "javascriptreact" },
+        },
+        typescript = {
+          suggest = {
+            includeCompletionsForModuleExports = true,
+          },
+          preferences = {
+            includePackageJsonAutoImports = "auto",
+          },
+        },
+      },
+    },
+  },
+
+  -- React syntax highlighting
+  {
+    "MaxMEllon/vim-jsx-pretty",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  },
+
+  -- Auto close and auto rename HTML/JSX tags
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup({
+        filetypes = {
+          "html",
+          "javascript",
+          "typescript",
+          "javascriptreact",
+          "typescriptreact",
+          "svelte",
+          "vue",
+          "tsx",
+          "jsx",
+          "rescript",
+          "xml",
+          "php",
+          "markdown",
+          "glimmer",
+          "handlebars",
+          "hbs",
+        },
+      })
+    end,
+  },
+
+  -- Emmet for JSX
+  {
+    "mattn/emmet-vim",
+    ft = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    config = function()
+      vim.g.user_emmet_leader_key = "<C-z>"
+      vim.g.user_emmet_settings = {
+        javascript = {
+          extends = "jsx",
+        },
+        typescript = {
+          extends = "tsx",
+        },
+      }
+    end,
+  },
+
+  -- React DevTools integration
+  {
+    "davidosomething/vim-colors-meh",
+    config = function()
+      -- React component debugging helpers
+      vim.api.nvim_create_user_command("ReactDebug", function()
+        print("React debugging enabled")
+      end, {})
+    end,
+  },
+
+  -- Package.json dependency management
+  {
+    "vuki656/package-info.nvim",
+    dependencies = "MunifTanjim/nui.nvim",
+    config = function()
+      require("package-info").setup({
+        colors = {
+          up_to_date = "#3C4048",
+          outdated = "#d19a66",
+        },
+        icons = {
+          enable = true,
+          style = {
+            up_to_date = "|  ",
+            outdated = "|  ",
+          },
+        },
+        autostart = true,
+        hide_up_to_date = false,
+        hide_unstable_versions = false,
+      })
+    end,
+  },
+
+  -- Tailwind CSS support
+  {
+    "themaxmarchuk/tailwindcss-colors.nvim",
+    config = function()
+      require("tailwindcss-colors").setup()
+    end,
+  },
+
+  -- Import cost display
+  {
+    "yardnsm/vim-import-cost",
+    build = "npm install",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  },
+
+  -- React testing utilities
+  {
+    "David-Kunz/jester",
+    config = function()
+      require("jester").setup({
+        cmd = "npm test -- --no-coverage --no-watchman --testNamePattern=$result",
+        identifiers = { "test", "it" },
+        prepend = { "describe" },
+        expressions = { "call_expression" },
+        path_to_jest_run = "npm test --",
+        path_to_jest_debug = "node --inspect-brk ./node_modules/.bin/jest --no-coverage --no-watchman --runInBand --testNamePattern=$result",
+      })
+    end,
+  },
+}
