@@ -1,5 +1,36 @@
+# 本地/隐私配置
 .history
 .zshrc.local
 .env
 *.local
+
+# 系统文件
 .DS_Store
+
+# 备份文件
+*.bak
+*~
+*.swp
+*.orig
+*.backup
+
+# 第三方依赖 (通过包管理器安装)
+.oh-my-zsh/
+.tmux/
+oh-my-tmux/
+powerlevel10k/
+
+# Karabiner 自动备份
+.config/karabiner/automatic_backups/
+
+# Yazi 临时文件
+.config/yazi/*.toml-*
+
+# 报告
+.reports/
+
+# Claude
+.claude/
+
+# 归档 (备用配置)
+archive/
