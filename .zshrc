@@ -76,3 +76,20 @@ load-nvmrc
 # ============================================
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+
+
+# 智能目录跳转
+fcd() {
+    local dir="${1:-.}"
+    dir=$(fd -t d . "$dir" 2>/dev/null | fzf \
+        --preview 'tree -L 1 -C {}' \
+        --prompt 'Directory> ') && cd "$dir"
+}
+# 文件编辑
+fe() {
+    local file
+    file=$(fd -t f . "${1:-.}" 2>/dev/null | fzf \
+        --preview 'bat --color=always --line-range :50 {}' \
+        --prompt 'File> ') && ${EDITOR:-nvim} "$file"
+}

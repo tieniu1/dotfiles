@@ -74,6 +74,14 @@ install_common() {
     # Neovim
     link_directory_contents "$DOTFILES/common/nvim" "$HOME/.config/nvim"
 
+    # Neovim 多配置 (NVIM_APPNAME)
+    [ -d "$DOTFILES/common/nvim-lazyvim" ] && \
+        create_symlink "$DOTFILES/common/nvim-lazyvim" "$HOME/.config/nvim-lazyvim"
+    [ -d "$DOTFILES/archive/nvim-v3" ] && \
+        create_symlink "$DOTFILES/archive/nvim-v3" "$HOME/.config/nvim-v3"
+    [ -d "$DOTFILES/archive/nvim-react" ] && \
+        create_symlink "$DOTFILES/archive/nvim-react" "$HOME/.config/nvim-react"
+
     # Yazi
     link_directory_contents "$DOTFILES/common/yazi" "$HOME/.config/yazi"
 
