@@ -21,7 +21,7 @@ oh-my-tmux/
 powerlevel10k/
 
 # Karabiner 自动备份
-.config/karabiner/automatic_backups/
+**/karabiner/automatic_backups/
 
 # Yazi 临时文件
 .config/yazi/*.toml-*
