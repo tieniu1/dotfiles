@@ -1,6 +1,6 @@
--- Autocmds are automatically loaded on the VeryLazy event
--- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
--- Add any additional autocmds here
+-- 自动命令会在 VeryLazy 事件时加载
+-- 默认自动命令: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- 在此添加自定义自动命令
 
 -- 保存时自动修复 ESLint 警告
 vim.api.nvim_create_autocmd("BufWritePre", {

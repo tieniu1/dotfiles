@@ -1,6 +1,6 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- 快捷键会在 VeryLazy 事件时加载
+-- 默认快捷键: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
+-- 在此添加自定义快捷键
 --
 local map = LazyVim.safe_keymap_set
 -- local delMap = vim.keymap.del

@@ -216,6 +216,10 @@ alt-shift-l = ['join-with right', 'mode main']  # Alt + Shift + l 与右边窗�
     if.app-id = 'com.google.Chrome'
     run = ['move-node-to-workspace 1']
 [[on-window-detected]]
+    if.app-id = 'com.google.chrome.for.testing'
+    run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
     if.app-name-regex-substring = 'Cursor'
     run = ['move-node-to-workspace 2']
 [[on-window-detected]]

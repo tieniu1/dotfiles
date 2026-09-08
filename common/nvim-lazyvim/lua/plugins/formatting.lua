@@ -16,7 +16,7 @@ return {
       setup = {
         stylelint_lsp = function()
           local function get_client(buf)
-            return LazyVim.lsp.get_clients({ name = "stylelint_lsp", bufnr = buf })[1]
+            return vim.lsp.get_clients({ name = "stylelint_lsp", bufnr = buf })[1]
           end
 
           local formatter = LazyVim.lsp.formatter({
@@ -49,7 +49,7 @@ return {
     },
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "stylelint-lsp",

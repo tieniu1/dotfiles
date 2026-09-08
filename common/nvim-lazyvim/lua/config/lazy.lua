@@ -16,33 +16,34 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
+    -- 加载 LazyVim 及其插件
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import lazyvim extras
+    -- 启用 LazyVim extras
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.vue" },
     { import = "lazyvim.plugins.extras.linting.eslint" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
-    -- import/override with your plugins
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.markdown", enabled = not vim.g.vscode },
+    -- 导入自定义插件配置
     { import = "plugins" },
   },
   defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
+    -- 默认只有 LazyVim 插件会懒加载，自定义插件会在启动时加载
+    -- 如果你清楚自己在做什么，可以设为 true 让所有自定义插件也默认懒加载
     lazy = false,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
-    version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
+    -- 建议保持 version=false，因为很多支持版本号的插件发布版本过旧，可能导致 Neovim 出问题
+    version = false, -- 始终使用最新的 git commit
+    -- version = "*", -- 尝试安装支持 semver 的插件的最新稳定版
   },
   install = { colorscheme = { "catppuccin", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
-    notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+    enabled = true, -- 定期检查插件更新
+    notify = false, -- 有更新时不弹通知
+  }, -- 自动检查插件更新
   performance = {
     rtp = {
-      -- disable some rtp plugins
+      -- 禁用部分内置 rtp 插件
       disabled_plugins = {
         "gzip",
         -- "matchit",

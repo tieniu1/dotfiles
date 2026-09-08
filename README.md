@@ -49,7 +49,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # 其他工具 (可选)
-brew install neovim yazi htop autojump
+brew install neovim yazi htop zoxide
 ```
 
 ### 3. 运行安装脚本

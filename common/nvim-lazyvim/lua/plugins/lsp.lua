@@ -69,7 +69,12 @@ if project_type == "vue2" then
   }
 end
 
--- eslint: 扩展 json 支持（所有项目通用）
+-- eslint: 扩展 html、json 支持（所有项目通用）
+-- 注意：校验 HTML 内嵌 JS 需要项目侧额外配置：
+--   1. 安装插件: npm install -D eslint-plugin-html
+--   2. 在 .eslintrc 中启用:  { "plugins": ["html"] }
+--      或在 eslint.config.js 中: import html from "eslint-plugin-html"
+-- 否则 ESLint server 虽然会 attach 到 HTML 文件，但无法解析 <script> 标签中的代码。
 servers.eslint = {
   filetypes = {
     "javascript",
@@ -81,14 +86,20 @@ servers.eslint = {
     "vue",
     "svelte",
     "astro",
+    "html",
     "json",
   },
 }
 
--- unocss: 仅 Vue3 项目启用
-if project_type == "vue3" then
+-- unocss: Vue3 / React 项目启用
+if project_type == "vue3" or project_type == "react" then
+  local unocss_filetypes = { "vue" }
+  if project_type == "react" then
+    unocss_filetypes = { "javascriptreact", "typescriptreact" }
+  end
+
   servers.unocss = {
-    filetypes = { "vue" },
+    filetypes = unocss_filetypes,
     capabilities = {
       textDocument = {
         colorProvider = { dynamicRegistration = true },
@@ -117,7 +128,6 @@ local plugins = {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        "typescript-language-server",
         "some-sass-language-server",
       },
     },
@@ -129,8 +139,8 @@ if project_type == "vue2" then
   plugins[2].opts.ensure_installed[#plugins[2].opts.ensure_installed + 1] = "vetur-vls"
 end
 
--- Vue3 项目额外安装 unocss + document-color 插件
-if project_type == "vue3" then
+-- Vue3 / React 项目额外安装 unocss + document-color 插件
+if project_type == "vue3" or project_type == "react" then
   plugins[2].opts.ensure_installed[#plugins[2].opts.ensure_installed + 1] = "unocss-language-server"
   plugins[#plugins + 1] = {
     "mrshmllow/document-color.nvim",

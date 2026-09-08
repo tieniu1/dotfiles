@@ -1,6 +1,6 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+-- 选项会在 lazy.nvim 启动前自动加载
+-- 默认选项: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
+-- 在此添加自定义选项
 --
 
 -- 禁用系统剪切板
