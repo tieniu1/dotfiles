@@ -103,6 +103,7 @@ testproxy  # 测试代理
 
 # Neovim 配置切换
 nvim-lazy   # LazyVim 配置
+nv          # LazyVim 配置（简写）
 nvim-v3     # V3 配置
 nvim-react  # React 配置
 ```
