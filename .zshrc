@@ -183,3 +183,12 @@ _auto_nvm_use() {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd _auto_nvm_use
 _auto_nvm_use  # 终端启动时立即执行一次
+
+# kimi-code
+export PATH="/Users/haland/.kimi-code/bin:$PATH"
+# 关闭kimi-code遥测
+export KIMI_DISABLE_TELEMETRY=1
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/haland/.local/bin:$PATH"
