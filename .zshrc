@@ -44,8 +44,11 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ============================================
-# 加载通用配置
+# 加载通用配置（~/dotfiles/common/shell/）
 # ============================================
+# env.sh       — 环境变量
+# aliases.sh   — 别名（含 nvim-lazy / nv 等）
+# functions.sh — 自定义函数
 [[ -f "$DOTFILES/common/shell/env.sh" ]] && source "$DOTFILES/common/shell/env.sh"
 [[ -f "$DOTFILES/common/shell/aliases.sh" ]] && source "$DOTFILES/common/shell/aliases.sh"
 [[ -f "$DOTFILES/common/shell/functions.sh" ]] && source "$DOTFILES/common/shell/functions.sh"
